@@ -13,6 +13,20 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities;
 /// </summary>
 public class User : BaseEntity, IUser
 {
+
+    /// <summary>
+    /// Gets the user's first name.
+    /// Must not be null or empty and should contain both first  name.
+    /// </summary>
+    public string FirstName { get; set; }
+
+
+    /// <summary>
+    /// Gets the user's last name.
+    /// Must not be null or empty and should contain both last name.
+    /// </summary>
+    public string LastName { get; set; }
+
     /// <summary>
     /// Gets the user's full name.
     /// Must not be null or empty and should contain both first and last names.
@@ -29,7 +43,7 @@ public class User : BaseEntity, IUser
     /// Gets the user's phone number.
     /// Must be a valid phone number format following the pattern (XX) XXXXX-XXXX.
     /// </summary>
-    public string Phone { get; set; } = string.Empty ;
+    public string Phone { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets the hashed password for authentication.
@@ -42,7 +56,7 @@ public class User : BaseEntity, IUser
     /// Gets the user's role in the system.
     /// Determines the user's permissions and access levels.
     /// </summary>
-    public UserRole Role { get;     set; }
+    public UserRole Role { get; set; }
 
     /// <summary>
     /// Gets the user's current status.
@@ -65,6 +79,16 @@ public class User : BaseEntity, IUser
     /// </summary>
     /// <returns>The user's ID as a string.</returns>
     string IUser.Id => Id.ToString();
+
+    /// <summary>
+    /// Gets the address of the user.
+    /// </summary>
+    public Address Address { get; set; }
+
+    /// <summary>
+    /// Gets the identity ID of the user.
+    /// </summary>
+    public string IdentityId { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets the username.

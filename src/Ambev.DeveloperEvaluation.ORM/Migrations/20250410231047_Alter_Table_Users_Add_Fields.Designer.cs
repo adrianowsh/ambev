@@ -3,6 +3,7 @@ using System;
 using Ambev.DeveloperEvaluation.ORM;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Ambev.DeveloperEvaluation.ORM.Migrations
 {
     [DbContext(typeof(DefaultContext))]
-    partial class DefaultContextModelSnapshot : ModelSnapshot
+    [Migration("20250410231047_Alter_Table_Users_Add_Fields")]
+    partial class Alter_Table_Users_Add_Fields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,12 +48,6 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("first_name");
-
-                    b.Property<string>("IdentityId")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)")
-                        .HasColumnName("identity_id");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -95,14 +92,6 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                     b.HasKey("Id")
                         .HasName("pk_users");
 
-                    b.HasIndex("Email")
-                        .IsUnique()
-                        .HasDatabaseName("ix_users_email");
-
-                    b.HasIndex("IdentityId")
-                        .IsUnique()
-                        .HasDatabaseName("ix_users_identity_id");
-
                     b.ToTable("Users", (string)null);
                 });
 
@@ -119,35 +108,35 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                                 .IsRequired()
                                 .HasMaxLength(50)
                                 .HasColumnType("character varying(50)")
-                                .HasColumnName("city");
+                                .HasColumnName("City");
 
                             b1.Property<string>("Lat")
                                 .IsRequired()
                                 .HasMaxLength(20)
                                 .HasColumnType("character varying(20)")
-                                .HasColumnName("latitude");
+                                .HasColumnName("Lat");
 
                             b1.Property<string>("Long")
                                 .IsRequired()
                                 .HasMaxLength(20)
                                 .HasColumnType("character varying(20)")
-                                .HasColumnName("longitude");
+                                .HasColumnName("Long");
 
                             b1.Property<int>("Number")
                                 .HasColumnType("integer")
-                                .HasColumnName("number");
+                                .HasColumnName("Number");
 
                             b1.Property<string>("Street")
                                 .IsRequired()
                                 .HasMaxLength(100)
                                 .HasColumnType("character varying(100)")
-                                .HasColumnName("street");
+                                .HasColumnName("Street");
 
                             b1.Property<string>("ZipCode")
                                 .IsRequired()
                                 .HasMaxLength(10)
                                 .HasColumnType("character varying(10)")
-                                .HasColumnName("zip_code");
+                                .HasColumnName("ZipCode");
 
                             b1.HasKey("UserId");
 

@@ -12,7 +12,23 @@ public class InfrastructureModuleInitializer : IModuleInitializer
 {
     public void Initialize(WebApplicationBuilder builder)
     {
-        builder.Services.AddScoped<DbContext>(provider => provider.GetRequiredService<DefaultContext>());
+        //builder.Services.AddScoped<DbContext>(provider => provider.GetRequiredService<DefaultContext>());
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+        builder.Services.AddDbContext<DefaultContext>(options =>
+            options.UseNpgsql(
+                builder.Configuration.GetConnectionString("DefaultConnection"),
+                npgSqlOptions =>
+                npgSqlOptions.MigrationsAssembly("Ambev.DeveloperEvaluation.ORM")
+            ).UseSnakeCaseNamingConvention());
+
+        //builder.Services.AddDbContext<ApplicationIdentityDbContext>(options =>
+        //    options.UseNpgsql(
+        //        builder.Configuration.GetConnectionString("DefaultConnection"),
+        //        npgSqlOptions =>
+        //            npgSqlOptions.MigrationsAssembly("Ambev.DeveloperEvaluation.ORM")
+        //                .MigrationsAssembly("Ambev.DeveloperEvaluation.WebApi")
+        //    ).UseSnakeCaseNamingConvention());
+
     }
 }
